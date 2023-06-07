@@ -2,9 +2,9 @@
   {
     "kernelSource": {
       "name": "DogDay-Normal",
-      "repo": "https://codeberg.org/DogDayAndroid/android_kernel_xiaomi_thyme",
-      "branch": "lineage-20.0",
-      "device": "thyme"
+      "repo": "https://github.com/PhamtomK12/kernel_xiaomi_odin",
+      "branch": "TDA",
+      "device": "odin"
     },
     "withKernelSU": false,
     "toolchains": [
@@ -15,7 +15,7 @@
       },
       {
         "repo": "https://gitlab.com/ThankYouMario/android_prebuilts_clang-standalone/",
-        "branch": "11",
+        "branch": "14",
         "name": "clang"
       }
     ],
@@ -32,9 +32,9 @@
   {
     "kernelSource": {
       "name": "DogDay-KernelSU",
-      "repo": "https://codeberg.org/DogDayAndroid/android_kernel_xiaomi_thyme",
-      "branch": "lineage-20.0",
-      "device": "thyme"
+      "repo": "https://github.com/PhamtomK12/kernel_xiaomi_odin",
+      "branch": "TDA",
+      "device": "odin"
     },
     "withKernelSU": true,
     "toolchains": [
@@ -45,7 +45,7 @@
       },
       {
         "repo": "https://gitlab.com/ThankYouMario/android_prebuilts_clang-standalone/",
-        "branch": "11",
+        "branch": "14",
         "name": "clang"
       }
     ],
@@ -61,10 +61,10 @@
   },
   {
     "kernelSource": {
-      "name": "IMMENSITY-X-Normal",
-      "repo": "https://github.com/UtsavBalar1231/kernel_xiaomi_sm8250",
-      "branch": "android12-stable",
-      "device": "umi"
+      "name": "Miku-kernel",
+      "repo": "https://github.com/PhamtomK12/kernel_xiaomi_odin",
+      "branch": "TDA",
+      "device": "odin"
     },
     "withKernelSU": false,
     "toolchains": [
@@ -75,7 +75,7 @@
       },
       {
         "repo": "https://gitlab.com/ThankYouMario/android_prebuilts_clang-standalone/",
-        "branch": "11",
+        "branch": "14",
         "name": "clang"
       }
     ],
