@@ -31,7 +31,7 @@
   },
   {
     "kernelSource": {
-      "name": "DogDay-KernelSU",
+      "name": "miku-KernelSU",
       "repo": "https://github.com/PhamtomK12/kernel_xiaomi_odin",
       "branch": "TDA",
       "device": "odin"
@@ -45,7 +45,7 @@
       },
       {
         "repo": "https://gitlab.com/ThankYouMario/android_prebuilts_clang-standalone/",
-        "branch": "14",
+        "branch": "11",
         "name": "clang"
       }
     ],
