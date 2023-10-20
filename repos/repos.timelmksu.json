@@ -3,7 +3,7 @@
     "kernelSource": {
       "name": "KSUoff-timelm-Proton",
       "repo": "https://github.com/IminatoPo/android_kernel_lge_sm8250",
-      "branch": "lineage-19.1",
+      "branch": "enable_ksu_testing",
       "device": "timelm",
       "defconfig": "timelm_defconfig"
     },
