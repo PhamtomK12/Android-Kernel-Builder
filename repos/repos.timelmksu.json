@@ -5,7 +5,7 @@
       "repo": "https://github.com/IminatoPo/android_kernel_lge_sm8250",
       "branch": "enable_ksu_testing",
       "device": "timelm",
-      "defconfig": "timelm-kprobe_defconfig"
+      "defconfig": "timelmksu-perf_defconfig"
     },
     "withKernelSU": true,
     "toolchains": [
