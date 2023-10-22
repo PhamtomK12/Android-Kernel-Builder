@@ -7,7 +7,7 @@
       "device": "timelm",
       "defconfig": "timelmksu-perf_defconfig"
     },
-    "withKernelSU": true,
+    "withKernelSU": false,
     "toolchains": [
       {
         "repo": "https://github.com/kdrag0n/proton-clang",
