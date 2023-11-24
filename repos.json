@@ -3,7 +3,8 @@
       "name": "miku-KernelSU",
       "repo": "https://github.com/PhamtomK12/kernel_xiaomi_odin",
       "branch": "TDA",
-      "device": "odin"
+      "device": "odin",
+      "useCustomDefconfig": false
     },
     "withKernelSU": true,
     "toolchains": [

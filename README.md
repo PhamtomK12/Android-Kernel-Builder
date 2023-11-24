@@ -45,6 +45,7 @@ The `Set-repos` job reads the kernel sources from the configuration file and out
 | Create working dir         | Create working directory                       |
 | Install prerequisites      | Install necessary dependencies for build       |
 | Clone kernel source        | Clone kernel source code                       |
+| Set defconfig              | Set default or custom defconfig                |
 | Get toolchains             | Get toolchains                                 |
 | Set args                   | Set build arguments                            |
 | Update KernelSU (optional) | Patch kernel with KernelSU                     |
@@ -66,7 +67,9 @@ Here is an example configuration file:
       "name": "DogDayAndroid",
       "repo": "https://codeberg.org/DogDayAndroid/android_kernel_xiaomi_thyme",
       "branch": "lineage-20.0",
-      "device": "thyme"
+      "device": "thyme",
+      "useCustomDefconfig": true,
+      "customDefconfig": "thyme_defconfig"
     },
     "withKernelSU": false,
     "toolchains": [

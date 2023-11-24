@@ -41,9 +41,8 @@ jobs:
       kernelRepo: ${{ matrix.repos.kernelSource.repo }}
       kernelBranch: ${{ matrix.repos.kernelSource.branch }}
       kernelDevice: ${{ matrix.repos.kernelSource.device }}
-
-      DEFCONFIG_NAME: ${{ matrix.repos.kernelSource.device }}_defconfig
-
+      useCustomDefconfig: ${{ matrix.repos.kernelSource.useCustomDefconfig }}
+      customDefconfig: ${{ matrix.repos.kernelSource.customDefconfig }}
       withKernelSU: ${{ matrix.repos.withKernelSU }}
     steps:
       - name: "✨ Create working dir"
@@ -58,6 +57,16 @@ jobs:
         working-directory: ./${{ env.kernelDir }}
         run: |
           git clone --recursive --branch $kernelBranch $kernelRepo $kernelName --depth=1
+
+      - name: "🔧 Set defconfig"
+        id: set-defconfig
+        run: |
+          if [ ${{ env.useCustomDefconfig }} == 'true' ]; then
+            DEFCONFIG_NAME="${{ env.customDefconfig }}"
+          else
+            DEFCONFIG_NAME="${{ env.kernelDevice }}_defconfig"
+          fi
+           echo "defconfig=$DEFCONFIG_NAME" >> $GITHUB_OUTPUT
 
       - name: "💫 Get toolchains"
         working-directory: ./${{ env.kernelDir }}
@@ -122,6 +131,8 @@ jobs:
 
       - name: "😋 Update KernelSU"
         working-directory: ./${{ env.kernelDir }}/${{ env.kernelName }}
+        env:
+          defconfig: ${{ steps.set-defconfig.outputs.defconfig }}
         if: ${{ env.withKernelSU == 'true' }}
         run: |
           if [ -d "./KernelSU" ]; then
@@ -133,19 +144,20 @@ jobs:
 
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
 
-          echo -e "\nCONFIG_KPROBES=y" >> ./arch/${{ env.ARCH }}/configs/${{ env.DEFCONFIG_NAME }}
-          echo -e "\nCONFIG_HAVE_KPROBES=y" >> ./arch/${{ env.ARCH }}/configs/${{ env.DEFCONFIG_NAME }}
-          echo -e "\nCONFIG_KPROBE_EVENTS=y" >> ./arch/${{ env.ARCH }}/configs/${{ env.DEFCONFIG_NAME }}
+          echo -e "\nCONFIG_KPROBES=y" >> ./arch/${{ env.ARCH }}/configs/${{ env.defconfig }}
+          echo -e "\nCONFIG_HAVE_KPROBES=y" >> ./arch/${{ env.ARCH }}/configs/${{ env.defconfig }}
+          echo -e "\nCONFIG_KPROBE_EVENTS=y" >> ./arch/${{ env.ARCH }}/configs/${{ env.defconfig }}
 
-          cat ./arch/${{ env.ARCH }}/configs/${{ env.DEFCONFIG_NAME }}
+          cat ./arch/${{ env.ARCH }}/configs/${{ env.defconfig }}
 
       - name: "👍 Make defconfig"
         working-directory: ./${{ env.kernelDir }}/${{ env.kernelName }}
         env:
           args: ${{ steps.generate-args.outputs.args }}
+          defconfig: ${{ steps.set-defconfig.outputs.defconfig }}
         run: |
           echo "PATH Variable: $PATH"
-          make ${{ env.args }} ${{ env.DEFCONFIG_NAME }}
+          make ${{ env.args }} ${{ env.defconfig }}
 
       - name: "🎶 Build kernel"
         working-directory: ./${{ env.kernelDir }}/${{ env.kernelName }}
